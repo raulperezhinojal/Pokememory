@@ -89,3 +89,20 @@ function createBoard(pokemons) {
     card.classList.add('card');
     card.dataset.id = pokemon.id;
     card.style.backgroundImage = "url('/assets/card-back.png')";
+
+    card.addEventListener('click', () => {
+      flipCard(card, pokemon.image);
+    });
+
+    board.appendChild(card);
+  });
+}
+
+function flipCard(card, image) {
+  if (
+    card.classList.contains('flipped') ||
+    card.classList.contains('matched') ||
+    flippedCards.length >= 2
+  ) {
+    return;
+  }
