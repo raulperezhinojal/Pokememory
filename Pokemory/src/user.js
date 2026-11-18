@@ -32,3 +32,13 @@ export async function handleUserLogin(username, email) {
       }
 
       // 4. Guradar en session Storage
+      sessionStorage.setItem("user", userId);
+
+      //Devolver true para indicar exito
+      return true;
+  } catch (error) {
+    console.error("Error en login:", error);
+    alert("Hubo un error conectando con la base de datos.");
+    return false;
+  }
+}
