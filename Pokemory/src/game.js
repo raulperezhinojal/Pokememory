@@ -106,3 +106,29 @@ function flipCard(card, image) {
   ) {
     return;
   }
+
+  card.style.backgroundImage = `url('${image}')`;
+  card.classList.add('flipped');
+  flippedCards.push(card);
+
+  if (flippedCards.length === 2) {
+    checkMatch();
+  }
+}
+
+function checkMatch() {
+  const [firstCard, secondCard] = flippedCards;
+
+  if (firstCard.dataset.id === secondCard.dataset.id) {
+    firstCard.classList.add('matched');
+    secondCard.classList.add('matched');
+
+    matchedPairs++;
+    flippedCards = [];
+
+    if (matchedPairs === totalPairs) {
+      finishGame();
+    }
+
+    return;
+  }
