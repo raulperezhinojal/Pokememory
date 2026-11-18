@@ -49,3 +49,22 @@ async function startGame(numberOfCards) {
   board.innerHTML = '';
   playButton.textContent = 'Volver a jugar';
 
+  try {
+    const pokemons = await getRandomPokemons(totalPairs);
+    createBoard(pokemons);
+    startTimer();
+  } catch (error) {
+    console.error(error);
+    showError('No se han podido cargar los Pokémon.');
+  }
+}
+
+async function getRandomPokemons(numberOfPokemons) {
+  const ids = new Set();
+
+  while (ids.size < numberOfPokemons) {
+    const randomId = Math.floor(Math.random() * 150) + 1;
+    ids.add(randomId);
+  }
+
+  const requests = [...ids].map((id) =>
