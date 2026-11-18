@@ -8,3 +8,16 @@ export async function handleUserLogin(username, email) {
       const data = await response.json();
 
       let userId;
+
+      // Si data no es null y tiene claves, el usuario existe
+      if (data && Object.keys(data).length > 0) {
+        //Obtenemos el id del primer resultado (aunque deberia ser unico)
+        userId = Object.keys(data)[0];
+
+        // 2. Actualizar el username si existe
+        await fetch(`${FIREBASE_URL}/users/${userId}.json`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify({ username : username }),
+        });
+      } else {
