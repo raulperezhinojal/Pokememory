@@ -1,13 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pokemory</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/src/style.css">
+  <title>PokeMemory</title>
+</head>
+<body>
+  <div id="app">
+  <div id="login-container">
+    <h1>PokeMemory</h1>
+
+    <form id="user-form">
+      <label for="username">Nombre de usuario:</label>
+      <input type="text" id="username" placeholder="Tu usuario" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="tucorreo@ejemplo.com" required>
+
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <div id="game">
+    <div class="game-layout">
+      <section class="left-panel">
+        <form id="game-form">
+          <label for="cards-number">Número de cartas:</label>
+          <input id="cards-number" type="number" min="2" required>
+          <button id="play-btn" type="submit">Jugar</button>
+        </form>
+
+        <p id="timer">0m 0s</p>
+
+        <button id="logout-btn" type="button">Salir</button>
+
+        <div id="game-board"></div>
+      </section>
+
+      <aside id="ranking"></aside>
+    </div>
+
+    <dialog id="modal">
+      <p id="modal-message"></p>
+      <button id="close-modal" type="button">Cerrar</button>
+    </dialog>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</div>
+</body>
 </html>
