@@ -33,3 +33,19 @@ export function initGame() {
       showError('El número de cartas debe ser entero, positivo y par.');
       return;
     }
+
+    startGame(numberOfCards);
+  });
+}
+
+async function startGame(numberOfCards) {
+  clearInterval(timerInterval);
+
+  cards = [];
+  flippedCards = [];
+  matchedPairs = 0;
+  totalPairs = numberOfCards / 2;
+
+  board.innerHTML = '';
+  playButton.textContent = 'Volver a jugar';
+
