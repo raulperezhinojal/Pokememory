@@ -1,4 +1,6 @@
-import { handleUserLogin} from './user.js';
+import { handleUserLogin } from './user.js';
+import { initGame } from './game.js';
+import { loadRanking } from './ranking.js';
 
 // ELEMENTOS DEL DOM
 
@@ -13,7 +15,11 @@ function showGame() {
   loginContainer.style.display = 'none';
   gameContainer.style.display = 'block';
   // Aqui iniciaremos la logica del juego
-  console.log("Juego iniciado para usuario:", sessionStorage.getItem('user'));
+  console.log('Juego iniciado para usuario:', sessionStorage.getItem('user'));
+
+  //INICIAR LOGICA DEL JUEGO
+  initGame();
+  loadRanking();
 }
 
 // 1. Comprobar si ya estamos logueados al cargar la página
@@ -22,7 +28,7 @@ if (sessionStorage.getItem('user')) {
 }
 
 // 2. Manejar el envio del formulario
-userForm.addEventListener('submit', async (e) =>{
+userForm.addEventListener('submit', async (e) => {
   e.preventDefault(); // ecita que se recargue la pagina
 
   const username = usernameInput.value;
@@ -36,10 +42,8 @@ userForm.addEventListener('submit', async (e) =>{
   }
 });
 
-//funcion para cerrar sesion 
-const logoutButton = document.getElementById('logout-btn');
-
-logoutButton?.addEventListener('click', () => {
-  sessionStorage.removeItem('user');
-  window.location.reload();
+// LOGICA DE LOGOUT
+document.getElementById('logout-btn')?.addEventListener('click', () => {
+  sessionStorage.removeItem('user'); // Borrar el ID de usuario
+  window.location.reload(); // Recargar la página (mostrará el login de nuevo)
 });
