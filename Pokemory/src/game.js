@@ -156,3 +156,13 @@ function startTimer() {
     timer.textContent = `${minutes}m ${seconds}s`;
   }, 1000);
 }
+
+function finishGame() {
+  clearInterval(timerInterval);
+  console.log('Partida completada');
+}
+
+function showError(message) {
+  modalMessage.textContent = message;
+  modal.showModal();
+}
