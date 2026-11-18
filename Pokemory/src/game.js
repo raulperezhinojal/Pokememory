@@ -1,3 +1,5 @@
+import { loadRanking, saveScore } from './ranking.js';
+
 let cards = [];
 let flippedCards = [];
 let matchedPairs = 0;
@@ -159,7 +161,12 @@ function startTimer() {
 
 function finishGame() {
   clearInterval(timerInterval);
-  console.log('Partida completada');
+  const totalTime = Math.floor((Date.now() - startTime) / 1000);
+  const userId = sessionStorage.getItem('user');
+
+  saveScore(userId, totalTime, totalPairs * 2).then((scoreId) => {
+    loadRanking(scoreId);
+  });
 }
 
 function showError(message) {

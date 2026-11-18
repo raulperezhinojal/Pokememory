@@ -1,0 +1,29 @@
+name: Testing
+
+on: pull_request
+
+jobs:
+  test:
+    name: Tests passes
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇ Git checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: 💾 Install modules
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: 🧪 Testing (E2E)
+        uses: cypress-io/github-action@v2
+        with:
+          command: pnpm test:e2e
+          start: pnpm dev
+          wait-on: 'http://localhost:5173'
