@@ -21,3 +21,14 @@ export async function handleUserLogin(username, email) {
           body: JSON.stringify({ username : username }),
         });
       } else {
+        // No existe: Creamos nuevo
+      const createResponse = await fetch(`${FIREBASE_URL}/users.json`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email }),
+      });
+        const createData = await createResponse.json();
+        userId = createData.name; // Firebase devuelve el id en la propiedad "name"
+      }
+
+      // 4. Guradar en session Storage
