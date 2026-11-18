@@ -35,3 +35,11 @@ userForm.addEventListener('submit', async (e) =>{
     showGame();
   }
 });
+
+//funcion para cerrar sesion 
+const logoutButton = document.getElementById('logout-btn');
+
+logoutButton?.addEventListener('click', () => {
+  sessionStorage.removeItem('user');
+  window.location.reload();
+});
