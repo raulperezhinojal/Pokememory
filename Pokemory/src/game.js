@@ -68,3 +68,24 @@ async function getRandomPokemons(numberOfPokemons) {
   }
 
   const requests = [...ids].map((id) =>
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      .then((response) => response.json())
+  );
+
+  const results = await Promise.all(requests);
+
+  return results.map((pokemon) => ({
+    id: pokemon.id,
+    image: pokemon.sprites.front_default,
+  }));
+}
+
+function createBoard(pokemons) {
+  cards = [...pokemons, ...pokemons].sort(() => Math.random() - 0.5);
+
+  cards.forEach((pokemon) => {
+    const card = document.createElement('div');
+
+    card.classList.add('card');
+    card.dataset.id = pokemon.id;
+    card.style.backgroundImage = "url('/assets/card-back.png')";
