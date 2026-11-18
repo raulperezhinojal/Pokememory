@@ -1,52 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/src/style.css">
-  <title>PokeMemory</title>
-</head>
-<body>
-  <div id="app">
-  <div id="login-container">
-    <h1>PokeMemory</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>PokeMemory</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="login-container">
+        <h1>PokeMemory</h1>
 
-    <form id="user-form">
-      <label for="username">Nombre de usuario:</label>
-      <input type="text" id="username" placeholder="Tu usuario" required>
+        <form id="user-form">
+          <label for="username">Nombre de usuario:</label>
+          <input type="text" id="username" placeholder="Tu usuario" required />
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" placeholder="tucorreo@ejemplo.com" required>
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="tucorreo@ejemplo.com"
+            required
+          />
 
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
-
-  <div id="game">
-    <div class="game-layout">
-      <section class="left-panel">
-        <form id="game-form">
-          <label for="cards-number">Número de cartas:</label>
-          <input id="cards-number" type="number" min="2" required>
-          <button id="play-btn" type="submit">Jugar</button>
+          <button type="submit">Entrar</button>
         </form>
+      </div>
 
-        <p id="timer">0m 0s</p>
+      <div id="game">
+        <div class="game-layout">
+          <div class="left-panel">
+            <div class="controls">
+              <form id="game-form">
+                <label for="cards-number">Numero de cartas:</label>
+                <input
+                  type="number"
+                  id="cards-number"
+                  min="4"
+                  max="20"
+                  placeholder="Ej: 8"
+                  required
+                />
+                <button type="submit" id="play-btn">Jugar</button>
+              </form>
 
-        <button id="logout-btn" type="button">Salir</button>
+              <div id="timer">0m 0s</div>
 
-        <div id="game-board"></div>
-      </section>
+              <button id="logout-btn">Salir</button>
+            </div>
 
-      <aside id="ranking"></aside>
+            <div id="game-board"></div>
+          </div>
+
+          <div id="ranking" class="right-panel"></div>
+        </div>
+
+        <dialog id="modal">
+          <p id="modal-message"></p>
+          <button id="close-modal">Cerrar</button>
+        </dialog>
+      </div>
     </div>
-
-    <dialog id="modal">
-      <p id="modal-message"></p>
-      <button id="close-modal" type="button">Cerrar</button>
-    </dialog>
-  </div>
-  <script type="module" src="/src/main.js"></script>
-</div>
-</body>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
