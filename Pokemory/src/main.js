@@ -23,3 +23,15 @@ if (sessionStorage.getItem('user')) {
 
 // 2. Manejar el envio del formulario
 userForm.addEventListener('submit', async (e) =>{
+  e.preventDefault(); // ecita que se recargue la pagina
+
+  const username = usernameInput.value;
+  const email = emailInput.value;
+
+  // Llamamos a la funcion de firebase
+  const succes = await handleUserLogin(username, email);
+
+  if (succes) {
+    showGame();
+  }
+});
