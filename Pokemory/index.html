@@ -22,8 +22,29 @@
     </form>
   </div>
 
-  <div id="game" >
-    <button id="logout-btn" type="button">Salir</button>
+  <div id="game">
+    <div class="game-layout">
+      <section class="left-panel">
+        <form id="game-form">
+          <label for="cards-number">Número de cartas:</label>
+          <input id="cards-number" type="number" min="2" required>
+          <button id="play-btn" type="submit">Jugar</button>
+        </form>
+
+        <p id="timer">0m 0s</p>
+
+        <button id="logout-btn" type="button">Salir</button>
+
+        <div id="game-board"></div>
+      </section>
+
+      <aside id="ranking"></aside>
+    </div>
+
+    <dialog id="modal">
+      <p id="modal-message"></p>
+      <button id="close-modal" type="button">Cerrar</button>
+    </dialog>
   </div>
   <script type="module" src="/src/main.js"></script>
 </div>
