@@ -132,3 +132,27 @@ function checkMatch() {
 
     return;
   }
+
+  setTimeout(() => {
+    firstCard.classList.remove('flipped');
+    secondCard.classList.remove('flipped');
+
+    firstCard.style.backgroundImage = "url('/assets/card-back.png')";
+    secondCard.style.backgroundImage = "url('/assets/card-back.png')";
+
+    flippedCards = [];
+  }, 1000);
+}
+
+function startTimer() {
+  startTime = Date.now();
+  timer.textContent = '0m 0s';
+
+  timerInterval = setInterval(() => {
+    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+
+    timer.textContent = `${minutes}m ${seconds}s`;
+  }, 1000);
+}
